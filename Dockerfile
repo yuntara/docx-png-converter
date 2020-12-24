@@ -17,7 +17,8 @@ RUN apt update && apt install -y fonts-dejavu \
     fonts-lyx \
     fonts-sil-gentium \
     fonts-texgyre \
-    fonts-tlwg-purisa 
+    fonts-tlwg-purisa \
+    fonts-ipafont
 RUN apt install -y imagemagick
 RUN cp /etc/ImageMagick-6/policy.xml ./polycy.xml
 RUN /etc/ImageMagick-6/policy.xml | grep -V '<policy domain="coder" rights="none" pattern="PDF" />' > /etc/ImageMagick-6/policy.xml
