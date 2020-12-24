@@ -4,21 +4,13 @@ RUN apt update \
     libreoffice libreoffice-l10n-ja \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
-RUN apt update && apt install -y fonts-dejavu \
-    fonts-dejavu-core \
-    fonts-dejavu-extra \
-    fonts-droid-fallback \
-    fonts-dustin \
-    fonts-f500 \
-    fonts-fanwood \
-    fonts-freefont-ttf \
-    fonts-liberation \
-    fonts-lmodern \
-    fonts-lyx \
-    fonts-sil-gentium \
-    fonts-texgyre \
-    fonts-tlwg-purisa \
-    fonts-ipafont
+RUN apt update
+RUN apt install -y unzip wget fontconfig fonts-noto-cjk && fc-cache -f
+RUN wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
+    && wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip \
+    && unzip NotoSansCJKjp-hinted.zip && unzip -o NotoSerifCJKjp-hinted.zip && mkdir -p /usr/share/fonts/TTF && mv *.otf /usr/share/fonts/TTF \
+    && rm *.zip \
+    && fc-cache -f
 RUN apt install -y imagemagick
 RUN cp /etc/ImageMagick-6/policy.xml ./polycy.xml
 RUN /etc/ImageMagick-6/policy.xml | grep -V '<policy domain="coder" rights="none" pattern="PDF" />' > /etc/ImageMagick-6/policy.xml
