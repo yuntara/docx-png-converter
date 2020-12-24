@@ -1,5 +1,5 @@
 #!/bin/bash
-
+DENSITY=$1
 temp_in=/tmp/temp
 temp_out=/tmp/temp.pdf
 
@@ -19,7 +19,7 @@ if [ -d ./images ]; then
 fi
 mkdir ./images
 
-convert $temp_out ./images/%03d.png
+convert -density ${DENSITY} -units PixelsPerInch $temp_out ./images/%03d.png
 convert -append ./images/*.png out.png
 
 

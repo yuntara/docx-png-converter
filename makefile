@@ -1,11 +1,11 @@
 REPOSITORY_BASE:=yuntara
-
+DENSITY:=300
 build:
 	make stop
 	docker build -t ${REPOSITORY_BASE}/docx-png-converter .
 
 run:
-	cat ${INPUT} | docker exec -i docx-png-converter bash /root/run.sh > ${OUTPUT}
+	cat ${INPUT} | docker exec -i docx-png-converter bash /root/run.sh ${DENSITY} > ${OUTPUT}
 
 start:
 	make build
