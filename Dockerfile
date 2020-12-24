@@ -2,9 +2,8 @@ FROM ubuntu:20.04
 RUN apt update
 RUN apt install -y unzip wget fontconfig && fc-cache -f
 
-RUN wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
-    && wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip \
-    && unzip NotoSansCJKjp-hinted.zip && unzip -o NotoSerifCJKjp-hinted.zip && mkdir -p /usr/share/fonts/TTF && mv *.otf /usr/share/fonts/TTF \
+RUN wget -q https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip \
+    && unzip -o NotoSerifCJKjp-hinted.zip && mkdir -p /usr/share/fonts/TTF && mv *.otf /usr/share/fonts/TTF \
     && rm *.zip \
     && fc-cache -f
 
